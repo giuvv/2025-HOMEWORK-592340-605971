@@ -2,7 +2,7 @@
 
 import java.util.Scanner;
 
-/**
+/** ciao
  * Classe principale di diadia, un semplice gioco di ruolo ambientato al dia.
  * Per giocare crea un'istanza di questa classe e invoca il letodo gioca
  *
