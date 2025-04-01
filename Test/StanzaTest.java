@@ -6,98 +6,98 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class StanzaTest {
 
-    private Stanza sala;
-    private Stanza cucina;
-    private Stanza giardino;
+    private Stanza Atrio;
+    private Stanza Biblioteca;
+    private Stanza N11;
     private Attrezzo spada;
     private Attrezzo chiave;
 
     @BeforeEach
     public void setUp() {
         // Setup iniziale
-        sala = new Stanza("Sala");
-        cucina = new Stanza("Cucina");
-        giardino = new Stanza("Giardino");
+        Atrio = new Stanza("Atrio");
+        Biblioteca = new Stanza("Biblioteca");
+        N11 = new Stanza("N11");
 
         // Creiamo alcuni attrezzi
         spada = new Attrezzo("spada", 1);
         chiave = new Attrezzo("chiave", 0);
         
         // Impostiamo stanze adiacenti
-        sala.impostaStanzaAdiacente("nord", cucina);
-        sala.impostaStanzaAdiacente("est", giardino);
+        Atrio.impostaStanzaAdiacente("nord", Biblioteca);
+        Atrio.impostaStanzaAdiacente("est", N11);
     }
 
     @Test
     public void testAddAttrezzo() {
         // Testiamo che aggiungere un attrezzo alla stanza funzioni
-        assertTrue(sala.addAttrezzo(spada), "Attrezzo dovrebbe essere aggiunto");
-        assertTrue(sala.hasAttrezzo("spada"), "La stanza dovrebbe contenere l'attrezzo 'spada'");
+        assertTrue(Atrio.addAttrezzo(spada), "Attrezzo dovrebbe essere aggiunto");
+        assertTrue(Atrio.hasAttrezzo("spada"), "La stanza dovrebbe contenere l'attrezzo 'spada'");
     }
 
     @Test
     public void testGetStanzaAdiacente() {
         // Testiamo che la stanza adiacente venga restituita correttamente
-        assertEquals(cucina, sala.getStanzaAdiacente("nord"), "La stanza adiacente a nord dovrebbe essere la Cucina");
-        assertEquals(giardino, sala.getStanzaAdiacente("est"), "La stanza adiacente a est dovrebbe essere il Giardino");
+        assertEquals(Biblioteca, Atrio.getStanzaAdiacente("nord"), "La stanza adiacente a nord dovrebbe essere la Cucina");
+        assertEquals(N11, Atrio.getStanzaAdiacente("est"), "La stanza adiacente a est dovrebbe essere il Giardino");
     }
 
     @Test
     public void testHasAttrezzo() {
         // Testiamo che un attrezzo sia correttamente trovato
-    	sala.addAttrezzo(spada);
-        sala.addAttrezzo(chiave);
+    	Atrio.addAttrezzo(spada);
+    	Atrio.addAttrezzo(chiave);
         
-        assertTrue(sala.hasAttrezzo("spada"), "La stanza dovrebbe contenere l'attrezzo 'spada'");
-        assertTrue(sala.hasAttrezzo("chiave"), "La stanza dovrebbe contenere l'attrezzo 'chiave'");
-        assertFalse(sala.hasAttrezzo("pala"), "La stanza non dovrebbe contenere l'attrezzo 'pala'");
+        assertTrue(Atrio.hasAttrezzo("spada"), "La stanza dovrebbe contenere l'attrezzo 'spada'");
+        assertTrue(Atrio.hasAttrezzo("chiave"), "La stanza dovrebbe contenere l'attrezzo 'chiave'");
+        assertFalse(Atrio.hasAttrezzo("pala"), "La stanza non dovrebbe contenere l'attrezzo 'pala'");
     }
 
     @Test
     public void testGetAttrezzo() {
         // Testiamo che un attrezzo venga restituito correttamente dalla stanza
-        sala.addAttrezzo(spada);
-        Attrezzo attrezzoTrovato = sala.getAttrezzo("spada");
+    	Atrio.addAttrezzo(spada);
+        Attrezzo attrezzoTrovato = Atrio.getAttrezzo("spada");
 
         assertNotNull(attrezzoTrovato, "L'attrezzo dovrebbe essere trovato");
         assertEquals("spada", attrezzoTrovato.getNome(), "Il nome dell'attrezzo dovrebbe essere 'spada'");
 
         // Verifica che l'attrezzo non esista nella stanza
-        Attrezzo attrezzoNonTrovato = sala.getAttrezzo("pala");
+        Attrezzo attrezzoNonTrovato = Atrio.getAttrezzo("pala");
         assertNull(attrezzoNonTrovato, "L'attrezzo 'pala' non dovrebbe essere presente nella stanza");
     }
 
     @Test
     public void testRemoveAttrezzo() {
         // Testiamo la rimozione dell'attrezzo
-        sala.addAttrezzo(spada);
-        assertTrue(sala.removeAttrezzo(spada), "L'attrezzo 'spada' dovrebbe essere rimosso dalla stanza");
-        assertFalse(sala.hasAttrezzo("spada"), "La stanza non dovrebbe contenere l'attrezzo 'spada' dopo la rimozione");
+    	Atrio.addAttrezzo(spada);
+        assertTrue(Atrio.removeAttrezzo(spada), "L'attrezzo 'spada' dovrebbe essere rimosso dalla stanza");
+        assertFalse(Atrio.hasAttrezzo("spada"), "La stanza non dovrebbe contenere l'attrezzo 'spada' dopo la rimozione");
     }
     
     @Test
     public void testDescrizioneStanza() {
         // Crea la stanza
-        Stanza sala = new Stanza("Sala dei Tesori");
+        Stanza Atrio = new Stanza("Atrio");
 
         // Aggiungi attrezzi
         Attrezzo spada = new Attrezzo("spada", 1);
         Attrezzo chiave = new Attrezzo("chiave", 1);
-        sala.addAttrezzo(spada);
-        sala.addAttrezzo(chiave);
+        Atrio.addAttrezzo(spada);
+        Atrio.addAttrezzo(chiave);
 
         // Imposta uscite
-        Stanza salaAdiacente = new Stanza("Sala Segreta");
-        sala.impostaStanzaAdiacente("nord", salaAdiacente);
+        Stanza salaAdiacente = new Stanza("Uscita");
+        Atrio.impostaStanzaAdiacente("nord", salaAdiacente);
 
         // Ottieni la descrizione della stanza
-        String descrizione = sala.getDescrizione();
+        String descrizione = Atrio.getDescrizione();
         
         // Stampa la descrizione per il debug
         System.out.println(descrizione);
 
         // Verifica che la descrizione contenga il nome della stanza
-        assertTrue(descrizione.contains("Sala dei Tesori"), "La descrizione dovrebbe contenere il nome della stanza.");
+        assertTrue(descrizione.contains("Atrio"), "La descrizione dovrebbe contenere il nome della stanza.");
 
         // Verifica che la descrizione contenga le uscite
         assertTrue(descrizione.contains("Uscite:"), "La descrizione dovrebbe contenere la parola 'Uscite'.");
