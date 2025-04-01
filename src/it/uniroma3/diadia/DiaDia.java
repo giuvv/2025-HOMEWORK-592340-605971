@@ -4,6 +4,7 @@ package it.uniroma3.diadia;
 import java.util.Scanner;
 
 import it.uniroma3.diadia.ambienti.Stanza;
+import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 /**
  * Classe principale di diadia, un semplice gioco di ruolo ambientato al dia.
@@ -29,22 +30,22 @@ public class DiaDia {
 			"o regalarli se pensi che possano ingraziarti qualcuno.\n\n"+
 			"Per conoscere le istruzioni usa il comando 'aiuto'.";
 	
-	static final private String[] elencoComandi = {"vai", "aiuto", "fine"};
+	static final private String[] elencoComandi = {"vai", "aiuto", "fine", "prendi"};
 
 	private Partita partita;
+	private IOConsole ioConsole;
 
 	public DiaDia() {
 		this.partita = new Partita();
+		this.ioConsole = new IOConsole();
 	}
 
 	public void gioca() {
-		String istruzione; 
-		Scanner scannerDiLinee;
+		String istruzione;
+		this.ioConsole.mostraMessaggio(MESSAGGIO_BENVENUTO);
 
-		System.out.println(MESSAGGIO_BENVENUTO);
-		scannerDiLinee = new Scanner(System.in);		
 		do		
-			istruzione = scannerDiLinee.nextLine();
+			istruzione = ioConsole.leggiRiga();
 		while (!processaIstruzione(istruzione));
 	}   
 
@@ -64,10 +65,12 @@ public class DiaDia {
 				this.vai(comandoDaEseguire.getParametro());
 			else if (comandoDaEseguire.getNome().equals("aiuto"))
 				this.aiuto();
+			else if (comandoDaEseguire.getNome().equals("prendi"))
+				this.prendiAttrezzo(comandoDaEseguire.getParametro());
 			else
-				System.out.println("Comando sconosciuto");
+				this.ioConsole.mostraMessaggio("Comando sconosciuto");
 			if (this.partita.vinta()) {
-				System.out.println("Hai vinto!");
+				this.ioConsole.mostraMessaggio("Hai vinto!");
 				return true;
 			} else
 				return false;
@@ -75,13 +78,51 @@ public class DiaDia {
 
 	// implementazioni dei comandi dell'utente:
 
+	/* Comando per prendere un attrezzo:
+	 * rimuove dalla stanza e aggiunge alla borsa
+	 */
+	private void prendiAttrezzo(String nomeAttrezzo) {
+		
+		Attrezzo attrezzo = partita.getStanzaCorrente().getAttrezzo(nomeAttrezzo);
+		Stanza stanza = partita.getStanzaCorrente();
+		
+		if (attrezzo==null)
+			System.out.println("Quale attrezzo vuoi prendere?");
+		else if (stanza.removeAttrezzo(attrezzo)) {
+			this.partita.getGiocatore().getBorsa().addAttrezzo(attrezzo);
+			System.out.println("Hai preso: " + attrezzo);
+		}
+		else 
+			System.out.println("L'attrezzo " + attrezzo + " non è nella stanza");
+	}
+	
+	/* Comando per posare un attrezzo:
+	 * rimuove dalla borsa e aggiunge nella stanza
+	 */
+	/* private void posaAttrezzo(String nomeAttrezzo) {
+		
+		Attrezzo attrezzo = partita.getStanzaCorrente().getAttrezzo(nomeAttrezzo);
+		Stanza stanza = partita.getStanzaCorrente();
+		
+		if (attrezzo==null) 
+			System.out.println("Quale attrezzo vuoi posare?");
+		else if (this.partita.getGiocatore().getBorsa().removeAttrezzo(attrezzo)) {
+			stanza.addAttrezzo(attrezzo);
+			System.out.println("Hai posato: " + attrezzo);
+		}
+		else 
+			System.out.println("L'attrezzo " + attrezzo + " non è nella stanza");
+	}
+	
+	
+	
+	
 	/**
 	 * Stampa informazioni di aiuto.
 	 */
 	private void aiuto() {
 		for(int i=0; i< elencoComandi.length; i++) 
-			System.out.print(elencoComandi[i]+" ");
-		System.out.println();
+			this.ioConsole.mostraMessaggio(elencoComandi[i]+" ");
 	}
 
 	/**
@@ -90,24 +131,24 @@ public class DiaDia {
 	 */
 	private void vai(String direzione) {
 		if(direzione==null)
-			System.out.println("Dove vuoi andare ?");
+			this.ioConsole.mostraMessaggio("Dove vuoi andare ?");
 		Stanza prossimaStanza = null;
 		prossimaStanza = this.partita.getStanzaCorrente().getStanzaAdiacente(direzione);
 		if (prossimaStanza == null)
-			System.out.println("Direzione inesistente");
+			this.ioConsole.mostraMessaggio("Direzione inesistente");
 		else {
 			this.partita.setStanzaCorrente(prossimaStanza);
 			int cfu = this.partita.getGiocatore().getCfu();
 			this.partita.getGiocatore().setCfu(cfu--);
 		}
-		System.out.println(partita.getStanzaCorrente().getDescrizione());
+		this.ioConsole.mostraMessaggio(partita.getStanzaCorrente().getDescrizione());
 	}
 
 	/**
 	 * Comando "Fine".
 	 */
 	private void fine() {
-		System.out.println("Grazie di aver giocato!");  // si desidera smettere
+		this.ioConsole.mostraMessaggio("Grazie di aver giocato!");  // si desidera smettere
 	}
 
 	public static void main(String[] argc) {
