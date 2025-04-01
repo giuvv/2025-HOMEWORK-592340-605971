@@ -42,7 +42,7 @@ public class Partita {
 	 * @return vero se partita vinta
 	 */
 	public boolean vinta() {
-		return this.getStanzaCorrente() == this.labirinto.getStanzaFinale();
+		return this.getStanzaCorrente().equals(this.labirinto.getStanzaFinale());
 	}
 
 	/**
@@ -57,9 +57,11 @@ public class Partita {
 	 * Imposta la partita come finita
 	 *
 	 */
-	public void setFinita(int finita) {
-		this.finita = true;
+	public void setFinita() {
+		return this.finita = true;
 	}
+	
+	
 
 	public int getCfu() {
 		return this.cfu;
@@ -68,4 +70,6 @@ public class Partita {
 	public void setCfu(int cfu) {
 		this.cfu = cfu;		
 	}	
+	
+	
 }
