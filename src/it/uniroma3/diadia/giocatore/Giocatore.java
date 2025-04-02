@@ -15,7 +15,7 @@ public class Giocatore {
 	}
 	
 	public int getCfu() {
-		return this.cfu;
+		return cfu;
 	}
 
 	public void setCfu(int cfu) {
@@ -23,11 +23,19 @@ public class Giocatore {
 	}
 	
 	public Borsa getBorsa() {
-		return this.borsa;
+		return borsa;
 	}
 	
-	public void setBorsa(Borsa borsa) {
-		this.borsa = borsa;
+	public boolean addAttrezzo(Attrezzo attrezzo) {
+		return borsa.addAttrezzo(attrezzo);
 	}
 	
+	public boolean hasAttrezzo(String nomeAttrezzo) {
+		return borsa.hasAttrezzo(nomeAttrezzo);
+	}
+	
+	public boolean removeAttrezzo(String nomeAttrezzo) {
+		return borsa.removeAttrezzo(nomeAttrezzo)!=null;
+	}
+
 }
