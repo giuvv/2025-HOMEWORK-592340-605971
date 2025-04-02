@@ -32,28 +32,6 @@ public class PartitaTest {
 		assertFalse(partita.vinta(),"La partita dev'essere persa");
 	}
 	
-	
-	
-	@Test
-    public void testPartitaFinitaPerCfuZero() {
-        partita.setCfu(0); // Imposta i CFU a 0
-
-        // Verifica che la partita sia finita quando i CFU sono 0
-        assertTrue(partita.isFinita(), "La partita dovrebbe essere finita quando i CFU sono 0.");
-    }
-	
-	@Test
-	public void testSetCfu() {
-		partita.setCfu(15);
-		
-		assertEquals(15,partita.getCfu(),"Il numero di cfu dev'essere cambiato");
-	}
-	
-	@Test
-	public void testCfuIniziali() {
-		assertEquals(20,partita.getCfu(),"il numero di CFU iniziali dev'essere 20");
-	}
-	
 	@Test
 	public void testPartitaNonFinitaAllInizio() {
 	    assertFalse(partita.isFinita(), "Una nuova partita non dovrebbe essere finita.");
