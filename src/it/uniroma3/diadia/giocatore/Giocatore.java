@@ -1,7 +1,7 @@
 package it.uniroma3.diadia.giocatore;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 import it.uniroma3.diadia.Borsa; 
-
+import it.uniroma3.diadia.Borsa;
 public class Giocatore {
 	private int cfu;
 	private Borsa borsa;
