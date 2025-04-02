@@ -171,19 +171,16 @@ public class Stanza {
 	public boolean removeAttrezzo(Attrezzo attrezzo) {
 	    for (int i = 0; i < this.numeroAttrezzi; i++) {
 	        if (this.attrezzi[i].equals(attrezzo)) {
-	            // Sposta gli attrezzi successivi di una posizione verso sinistra
 	            for (int j = i; j < this.numeroAttrezzi - 1; j++) {
 	                this.attrezzi[j] = this.attrezzi[j + 1];
 	            }
-	            this.attrezzi[this.numeroAttrezzi - 1] = null; // Elimina l'ultimo attrezzo
-	            this.numeroAttrezzi--; // Decrementa il numero di attrezzi
+	            this.attrezzi[this.numeroAttrezzi - 1] = null;
+	            this.numeroAttrezzi--;
 	            return true;
 	        }
 	    }
-	    return false; // Se l'attrezzo non è stato trovato
+	    return false;
 	}
-
-
 
 	public String[] getDirezioni() {
 		String[] direzioni = new String[this.numeroStanzeAdiacenti];

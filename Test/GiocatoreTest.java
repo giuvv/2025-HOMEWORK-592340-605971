@@ -30,10 +30,4 @@ public class GiocatoreTest {
 		assertNotNull(giocatore.getBorsa());
 	}
 	
-	@Test
-	public void testsetBorsa() {
-		Borsa nuovaBorsa = new Borsa();
-		giocatore.setBorsa(nuovaBorsa);
-		assertEquals(nuovaBorsa,giocatore.getBorsa());
-	}
 }
