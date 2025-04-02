@@ -4,6 +4,7 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+
 public class PartitaTest {
 
 	private Partita partita;
