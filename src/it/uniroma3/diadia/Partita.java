@@ -42,25 +42,28 @@ public class Partita {
 	 * @return vero se partita vinta
 	 */
 	public boolean vinta() {
-		return this.getStanzaCorrente().equals(this.labirinto.getStanzaFinale());
+	    return this.getStanzaCorrente().equals(this.labirinto.getStanzaFinale());
 	}
 
+	
+
+	
 	/**
 	 * Restituisce vero se e solo se la partita e' finita
 	 * @return vero se partita finita
 	 */
 	public boolean isFinita() {
-		return finita || vinta() || (cfu == 0);
+		return (finita || vinta() || (cfu == 0));
 	}
 
 	/**
 	 * Imposta la partita come finita
 	 *
 	 */
-	public void setFinita() {
-		return this.finita = true;
-	}
 	
+	public void setFinita() {
+		this.finita = true;
+	}
 	
 
 	public int getCfu() {
@@ -71,5 +74,8 @@ public class Partita {
 		this.cfu = cfu;		
 	}	
 	
-	
+	public Stanza getStanzaFinale() {
+	    return this.labirinto.getStanzaFinale();
+	}
+
 }

@@ -14,14 +14,14 @@ public class PartitaTest {
 	@BeforeEach
 	public void setUp() {
 		partita = new Partita();
-		stanzaIniziale = partita.getStanzaCorrente();
+	    stanzaIniziale = partita.getStanzaCorrente();
 		stanzaVincente = new Stanza("Stanza Vincente");
 		partita.setStanzaCorrente(stanzaIniziale);
 	}
 	
 	@Test
 	public void testPartitaVinta() {
-		partita.setStanzaCorrente(stanzaVincente);
+		partita.setStanzaCorrente(partita.getStanzaFinale());
 		assertTrue(partita.vinta(),"La partita dovrebbe essere vinta");
 	}
 	
@@ -33,7 +33,7 @@ public class PartitaTest {
 	
 	@Test
 	public void testPartitaIsFinita() {
-		partita.setStanzaCorrente(stanzaVincente);
+		partita.setStanzaCorrente(partita.getStanzaFinale());
 		assertTrue(partita.isFinita(),"La partita dovrebbe essere finita");
 	}
 	
@@ -61,7 +61,7 @@ public class PartitaTest {
 	public void testPartitaCompleta() {
 		partita.setStanzaCorrente(stanzaVincente);
 		assertFalse(partita.isFinita());
-		partita.setFinita(True);
+		partita.setFinita();
 		assertTrue(partita.isFinita());
 	}
 	
