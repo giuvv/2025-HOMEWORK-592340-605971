@@ -33,16 +33,19 @@ public int getPesoMax() {
 
 public Attrezzo getAttrezzo(String nomeAttrezzo) {
 	Attrezzo a = null;
-	for (int i= 0; i<this.numeroAttrezzi; i++)
-		if (this.attrezzi[i].getNome().equals(nomeAttrezzo))
+	for (int i= 0; i<this.numeroAttrezzi; i++) {
+		if (this.attrezzi[i].getNome().equals(nomeAttrezzo)) {
 			a = attrezzi[i];
+		}
+	}
 	return a;
 }
 
 public int getPeso() {
 	int peso = 0;
-	for (int i= 0; i<this.numeroAttrezzi; i++)
+	for (int i= 0; i<this.numeroAttrezzi; i++) {
 		peso += this.attrezzi[i].getPeso();
+	}
 	return peso;
 }
 
@@ -67,18 +70,21 @@ public Attrezzo removeAttrezzo(String nomeAttrezzo) {
 			break;
 			}
 	}
+	
 	return a;
 }
 
 public String toString() {
 	StringBuilder s = new StringBuilder();
 	if (!this.isEmpty()) {
-		s.append("Contenuto borsa ("+this.getPeso()+"kg/"+this.getPesoMax()+"kg): ");
-		for (int i= 0; i<this.numeroAttrezzi; i++)
-			s.append(attrezzi[i].toString()+" ");
+		s.append("Contenuto borsa (" +this.getPeso()+ "kg/" + this.getPesoMax() + "kg): ");
+		for (int i= 0; i<this.numeroAttrezzi; i++) {
+			s.append(attrezzi[i].toString() + " ");
+		}
 	}
-	else
+	else {
 		s.append("Borsa vuota");
+	}
 	return s.toString();
 	}
 }
