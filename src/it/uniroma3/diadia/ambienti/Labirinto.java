@@ -48,18 +48,13 @@ public class Labirinto {
 		return iniziale;
 	}
     
-    public void setStanzaIniziale(Stanza iniziale) {
-    	this.iniziale = iniziale;
-    }
+    
 
     public Stanza getStanzaFinale() {
 		return finale;
 	}
     
-    public void setStanzaFinale(Stanza finale) {
-    	this.finale = finale;
-    }
-    
+   
     
     
     

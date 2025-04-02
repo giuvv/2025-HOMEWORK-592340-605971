@@ -45,9 +45,12 @@ public class Partita {
 	 * @return vero se partita vinta
 	 */
 	public boolean vinta() {
-		return this.getStanzaCorrente() == this.labirinto.getStanzaFinale();
+	    return this.getStanzaCorrente().equals(this.labirinto.getStanzaFinale());
 	}
 
+	
+
+	
 	/**
 	 * Restituisce vero se e solo se la partita e' finita
 	 * @return vero se partita finita
@@ -60,8 +63,14 @@ public class Partita {
 	 * Imposta la partita come finita
 	 *
 	 */
-	public void setFinita(int finita) {
+	
+	public void setFinita() {
 		this.finita = true;
 	}
+	
+	public Stanza getStanzaFinale() {
+	    return this.labirinto.getStanzaFinale();
+	}
+
 
 }
