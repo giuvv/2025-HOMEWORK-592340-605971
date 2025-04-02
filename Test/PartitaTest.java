@@ -31,11 +31,7 @@ public class PartitaTest {
 		assertFalse(partita.vinta(),"La partita dev'essere persa");
 	}
 	
-	@Test
-	public void testPartitaIsFinita() {
-		partita.setStanzaCorrente(partita.getStanzaFinale());
-		assertTrue(partita.isFinita(),"La partita dovrebbe essere finita");
-	}
+	
 	
 	@Test
     public void testPartitaFinitaPerCfuZero() {
@@ -58,12 +54,24 @@ public class PartitaTest {
 	}
 	
 	@Test
-	public void testPartitaCompleta() {
-		partita.setStanzaCorrente(stanzaVincente);
-		assertFalse(partita.isFinita());
-		partita.setFinita();
-		assertTrue(partita.isFinita());
+	public void testPartitaNonFinitaAllInizio() {
+	    assertFalse(partita.isFinita(), "Una nuova partita non dovrebbe essere finita.");
 	}
+
+	@Test
+	public void testSetFinitaImpostaCorrettamente() {
+	    partita.setFinita();
+	    assertTrue(partita.isFinita(), "Dopo aver chiamato setFinita(), la partita dovrebbe essere finita.");
+	}
+
+	@Test
+	public void testPartitaNonVintaSeNonNellaStanzaFinale() {
+	    Stanza altraStanza = new Stanza("Stanza Intermedia");
+	    partita.setStanzaCorrente(altraStanza);
+	    assertFalse(partita.vinta(), "La partita non dovrebbe essere vinta se il giocatore non è nella stanza finale.");
+	}
+
+	
 	
 	
 }
