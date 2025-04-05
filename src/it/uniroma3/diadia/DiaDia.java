@@ -136,12 +136,18 @@ public class DiaDia {
 		prossimaStanza = this.partita.getStanzaCorrente().getStanzaAdiacente(direzione);
 		if (prossimaStanza == null)
 			this.ioConsole.mostraMessaggio("Direzione inesistente");
+		else if (this.partita.getGiocatore().getCfu()<=0) {
+			this.partita.setFinita();
+			ioConsole.mostraMessaggio("Non hai CFU a disposizione per muoverti");
+			this.fine();
+		}
 		else {
 			this.partita.setStanzaCorrente(prossimaStanza);
 			int cfu = this.partita.getGiocatore().getCfu();
 			this.partita.getGiocatore().setCfu(cfu-1);
 		}
 		ioConsole.mostraMessaggio(partita.getStanzaCorrente().getDescrizione());
+		ioConsole.mostraMessaggio("Hai a disposizione "+ this.partita.getGiocatore().getCfu() +" CFU");
 	}
 
 	/**

@@ -15,7 +15,7 @@ public class Giocatore {
 	}
 	
 	public int getCfu() {
-		return cfu;
+		return this.cfu;
 	}
 
 	public void setCfu(int cfu) {
