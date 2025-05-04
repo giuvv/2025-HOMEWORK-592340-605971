@@ -57,27 +57,19 @@ public class DiaDia {
 	 * @return true se l'istruzione e' eseguita e il gioco continua, false altrimenti
 	 */
 	private boolean processaIstruzione(String istruzione) {
-		Comando comandoDaEseguire = new Comando(istruzione);
-		if (comandoDaEseguire.getNome()!=null)
-			if (comandoDaEseguire.getNome().equals("fine")) {
-				this.fine(); 
-				return true;
-			} else if (comandoDaEseguire.getNome().equals("vai"))
-				this.vai(comandoDaEseguire.getParametro());
-			else if (comandoDaEseguire.getNome().equals("aiuto"))
-				this.aiuto();
-			else if (comandoDaEseguire.getNome().equals("prendi"))
-				this.prendiAttrezzo(comandoDaEseguire.getParametro());
-			else if (comandoDaEseguire.getNome().equals("posa"))
-				this.posaAttrezzo(comandoDaEseguire.getParametro());
-			else
-				ioConsole.mostraMessaggio("Comando sconosciuto");
-			if (this.partita.vinta()) {
-				ioConsole.mostraMessaggio("Hai vinto!");
-				return true;
-			} else
-				return false;
-	}   
+		Comando comandoDaEseguire;
+		FabbricaDiComandi factory = new FabbricaDiComandi();
+		comandoDaEseguire = factory.costruisciComando(istruzione);
+		comandoDaEseguire.esegui(this.partita);
+		if (this.partita.vinta())
+
+		System.out.println("Hai vinto!");
+		if (!this.partita.giocatoreIsVivo())
+
+		System.out.println("Hai esaurito i CFU...");
+
+		return this.partita.isFinita();
+		}
 
 	// implementazioni dei comandi dell'utente:
 
@@ -123,31 +115,6 @@ public class DiaDia {
 	private void aiuto() {
 		for(int i=0; i< elencoComandi.length; i++) 
 			ioConsole.mostraMessaggio(elencoComandi[i]+" ");
-	}
-
-	/**
-	 * Cerca di andare in una direzione. Se c'e' una stanza ci entra 
-	 * e ne stampa il nome, altrimenti stampa un messaggio di errore
-	 */
-	private void vai(String direzione) {
-		if(direzione==null)
-			ioConsole.mostraMessaggio("Dove vuoi andare ?");
-		Stanza prossimaStanza = null;
-		prossimaStanza = this.partita.getStanzaCorrente().getStanzaAdiacente(direzione);
-		if (prossimaStanza == null)
-			this.ioConsole.mostraMessaggio("Direzione inesistente");
-		else if (this.partita.getGiocatore().getCfu()<=0) {
-			this.partita.setFinita();
-			ioConsole.mostraMessaggio("Non hai CFU a disposizione per muoverti");
-			this.fine();
-		}
-		else {
-			this.partita.setStanzaCorrente(prossimaStanza);
-			int cfu = this.partita.getGiocatore().getCfu();
-			this.partita.getGiocatore().setCfu(cfu-1);
-		}
-		ioConsole.mostraMessaggio(partita.getStanzaCorrente().getDescrizione());
-		ioConsole.mostraMessaggio("Hai a disposizione "+ this.partita.getGiocatore().getCfu() +" CFU");
 	}
 
 	/**
