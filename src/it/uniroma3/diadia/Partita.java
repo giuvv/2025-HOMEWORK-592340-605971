@@ -48,9 +48,10 @@ public class Partita {
 	    return this.getStanzaCorrente().equals(this.labirinto.getStanzaFinale());
 	}
 
-	
+	public boolean giocatoreIsVivo() {
+		return this.giocatore.getCfu() > 0;
+	}
 
-	
 	/**
 	 * Restituisce vero se e solo se la partita e' finita
 	 * @return vero se partita finita
