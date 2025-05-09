@@ -1,6 +1,5 @@
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.ambienti.Stanza;
-import it.uniroma3.diadia.attrezzi.Attrezzo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -9,14 +8,12 @@ public class PartitaTest {
 
 	private Partita partita;
 	private Stanza stanzaIniziale;
-	private Stanza stanzaVincente;
-	
 	
 	@BeforeEach
 	public void setUp() {
 		partita = new Partita();
 	    stanzaIniziale = partita.getStanzaCorrente();
-		stanzaVincente = new Stanza("Stanza Vincente");
+		new Stanza("Stanza Vincente");
 		partita.setStanzaCorrente(stanzaIniziale);
 	}
 	

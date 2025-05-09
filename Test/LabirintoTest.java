@@ -1,6 +1,4 @@
-import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.ambienti.Stanza;
-import it.uniroma3.diadia.attrezzi.Attrezzo;
 import it.uniroma3.diadia.ambienti.Labirinto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
