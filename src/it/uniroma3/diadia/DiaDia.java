@@ -69,5 +69,6 @@ public class DiaDia {
 		IO io = new IOConsole();
 		DiaDia gioco = new DiaDia(io);
 		gioco.gioca();
+		//ciao
 	}
 }
