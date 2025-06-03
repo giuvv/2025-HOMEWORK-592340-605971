@@ -1,5 +1,7 @@
-package it.uniroma3.diadia.ambienti;
 
+
+import it.uniroma3.diadia.ambienti.Stanza;
+import it.uniroma3.diadia.ambienti.StanzaBloccata;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
