@@ -1,27 +1,22 @@
 package it.uniroma3.diadia.comandi;
 
-import it.uniroma3.diadia.IOConsole;
 import it.uniroma3.diadia.Partita;
 
-public class ComandoGuarda implements Comando {
-	IOConsole ioConsole = new IOConsole();
-	
-	public void esegui (Partita partita) {
-		ioConsole.mostraMessaggio(partita.getStanzaCorrente().getDescrizione());
-	}
+public class ComandoGuarda extends AbstractComando {
+
+	private final static String NOME = "guarda";
+
 
 	@Override
-	public void setParametro(String parametro) {
+	public void esegui(Partita partita) {
+		this.getIo().mostraMessaggio(partita.getStanzaCorrente().getDescrizione());
+		this.getIo().mostraMessaggio("Hai ancora: "+partita.getGiocatore().getCfu()+ "CFU");
+		this.getIo().mostraMessaggio(partita.getGiocatore().getBorsa().toString());
+
 	}
 
 	@Override
 	public String getNome() {
-		return null;
+		return NOME;
 	}
-
-	@Override
-	public String getParametro() {
-		return null;
-	}
-
 }
