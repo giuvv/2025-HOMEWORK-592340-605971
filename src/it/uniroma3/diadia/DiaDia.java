@@ -77,7 +77,7 @@ public class DiaDia {
 
 	public static void main(String[] argc) throws Exception {
 		Scanner scanner = new Scanner(System.in);
-		IO console = new IOConsole(scanner);
+		IO console = new IOConsole();
 		
 		Labirinto labirinto = Labirinto.newBuilder("labirinto5.txt").getLabirinto();
 
