@@ -45,7 +45,12 @@ public class Strega extends AbstractPersonaggio {
 
 	@Override
 	public String riceviRegalo(Attrezzo attrezzo, Partita partita) {
-		return "AHAHAHAHAHAHA";
+		if (attrezzo!=null)
+			return "AHAHAHAHAHAHA";
+		else {
+			StringBuilder risposta = new StringBuilder("Devi specificare cosa regalare");
+			return risposta.toString();
+		}
 	}
 
 }

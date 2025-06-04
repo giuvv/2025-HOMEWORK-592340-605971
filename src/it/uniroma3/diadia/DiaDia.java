@@ -48,7 +48,7 @@ public class DiaDia {
 		do {
 			istruzione = io.leggiRiga();
 		}
-		while (!processaIstruzione(istruzione) );
+		while (!processaIstruzione(istruzione));
 	}   
 	
 	/**System.in
@@ -77,9 +77,9 @@ public class DiaDia {
 
 	public static void main(String[] argc) throws Exception {
 		Scanner scanner = new Scanner(System.in);
-		IO console = new IOConsole();
+		IO console = new IOConsole(scanner);
 		
-		Labirinto labirinto = Labirinto.newBuilder("labirinto5.txt").getLabirinto();
+		Labirinto labirinto = Labirinto.newBuilder("labirinto.txt").getLabirinto();
 
 		DiaDia gioco = new DiaDia(console, labirinto);
 		gioco.gioca();

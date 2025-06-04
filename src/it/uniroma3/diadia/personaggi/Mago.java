@@ -30,11 +30,17 @@ public class Mago extends AbstractPersonaggio {
 	
 	@Override
 	public String riceviRegalo(Attrezzo attrezzo, Partita partita) {
-		StringBuilder risposta = new StringBuilder("Grazie per avermi regalato ");
-		risposta.append(attrezzo.getNome()+".");
-		risposta.append(" Lo modificherò e lo lascerò!");
-		Attrezzo attrezzoModificato = new Attrezzo(attrezzo.getNome(), attrezzo.getPeso()/2);
-		partita.getStanzaCorrente().addAttrezzo(attrezzoModificato);
-		return risposta.toString();
+		if (attrezzo!=null) {
+			StringBuilder risposta = new StringBuilder("Grazie per avermi regalato ");
+			risposta.append(attrezzo.getNome()+".");
+			risposta.append(" Lo modificherò e lo lascerò!");
+			Attrezzo attrezzoModificato = new Attrezzo(attrezzo.getNome(), attrezzo.getPeso()/2);
+			partita.getStanzaCorrente().addAttrezzo(attrezzoModificato);
+			return risposta.toString();
+		}
+		else {
+			StringBuilder risposta2 = new StringBuilder("Devi specificare cosa regalare");
+			return risposta2.toString();
+		}
 	}
 }

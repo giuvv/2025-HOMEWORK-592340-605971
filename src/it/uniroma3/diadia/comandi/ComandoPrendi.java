@@ -1,6 +1,5 @@
 package it.uniroma3.diadia.comandi;
 
-import it.uniroma3.diadia.IO;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
@@ -16,7 +15,7 @@ public class ComandoPrendi extends AbstractComando {
 			this.getIo().mostraMessaggio("Attrezzo non presente nella stanza!");
 		} 
 		else {
-			if(partita.getGiocatore().getBorsa().getPesoRimanente(a)) {
+			if(partita.getGiocatore().getBorsa().puoContenereAttrezzo(a)) {
 				partita.getGiocatore().getBorsa().addAttrezzo(a);
 				partita.getLabirinto().getStanzaCorrente().removeAttrezzo(a);
 			} 

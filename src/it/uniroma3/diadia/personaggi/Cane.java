@@ -20,17 +20,21 @@ public class Cane extends AbstractPersonaggio {
 
 	@Override
 	public String riceviRegalo(Attrezzo attrezzo, Partita partita) {
-		StringBuilder risposta = new StringBuilder("Bau grazie per avermi regalato ");
-
-		if(attrezzo.getNome().equals(CIBO_PREFERITO)) {
-			risposta.append("il mio cibo preferito.");
-			partita.getStanzaCorrente().addAttrezzo(new Attrezzo("collare", 2));
-		} else {
-			risposta.append(attrezzo.getNome()+",ma non e' il mio cibo preferit, bau!");
-			partita.getGiocatore().setCfu(partita.getGiocatore().getCfu()-1);
-		}
-
+		if (attrezzo!=null) {
+			StringBuilder risposta = new StringBuilder("Bau grazie per avermi regalato ");
+			if(attrezzo.getNome().equals(CIBO_PREFERITO)) {
+				risposta.append("il mio cibo preferito.");
+				partita.getStanzaCorrente().addAttrezzo(new Attrezzo("collare", 2));
+			} else {
+				risposta.append(attrezzo.getNome()+", ma non e' il mio cibo preferito, bau!");
+				partita.getGiocatore().setCfu(partita.getGiocatore().getCfu()-1);
+			}
 		return risposta.toString();
+		}
+		else {
+			StringBuilder risposta2 = new StringBuilder("Devi specificare cosa regalare");
+			return risposta2.toString();
+		}
 	}
 
 }
