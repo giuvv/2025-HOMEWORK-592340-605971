@@ -1,53 +1,47 @@
+import it.uniroma3.diadia.FormatoFileNonValidoException;
 import it.uniroma3.diadia.Partita;
+import it.uniroma3.diadia.ambienti.Labirinto;
 import it.uniroma3.diadia.ambienti.Stanza;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.io.FileNotFoundException;
+
+
 
 public class PartitaTest {
 
-	private Partita partita;
-	private Stanza stanzaIniziale;
-	
+	Labirinto labirinto;
+	Partita p;
+	Stanza s;
+
 	@BeforeEach
-	public void setUp() {
-		partita = new Partita();
-	    stanzaIniziale = partita.getStanzaCorrente();
-		new Stanza("Stanza Vincente");
-		partita.setStanzaCorrente(stanzaIniziale);
+	public void setUp() throws FileNotFoundException, FormatoFileNonValidoException {
+		 labirinto = Labirinto.newBuilder("labirinto2.txt").getLabirinto();
+
+		 p = new Partita(labirinto);
+		 s = new Stanza("Stanza");
 	}
 	
 	@Test
-	public void testPartitaVinta() {
-		partita.setStanzaCorrente(partita.getStanzaFinale());
-		assertTrue(partita.vinta(),"La partita dovrebbe essere vinta");
-	}
-	
-	@Test
-	public void testPartitaPersa() {
-		partita.setStanzaCorrente(stanzaIniziale);
-		assertFalse(partita.vinta(),"La partita dev'essere persa");
-	}
-	
-	@Test
-	public void testPartitaNonFinitaAllInizio() {
-	    assertFalse(partita.isFinita(), "Una nuova partita non dovrebbe essere finita.");
+	public void testGetStanzaVincente() {
+		assertEquals("Biblioteca", p.getLabirinto().getStanzaVincente().getNome());
 	}
 
 	@Test
-	public void testSetFinitaImpostaCorrettamente() {
-	    partita.setFinita();
-	    assertTrue(partita.isFinita(), "Dopo aver chiamato setFinita(), la partita dovrebbe essere finita.");
+	public void testSetStanzaCorrente() {
+		p.getLabirinto().setStanzaCorrente(s);
+		assertEquals(s, p.getLabirinto().getStanzaCorrente());
 	}
 
 	@Test
-	public void testPartitaNonVintaSeNonNellaStanzaFinale() {
-	    Stanza altraStanza = new Stanza("Stanza Intermedia");
-	    partita.setStanzaCorrente(altraStanza);
-	    assertFalse(partita.vinta(), "La partita non dovrebbe essere vinta se il giocatore non è nella stanza finale.");
+	public void testIsFinita() {
+		
+		assertFalse(p.isFinita());
 	}
-
-	
-	
 	
 }

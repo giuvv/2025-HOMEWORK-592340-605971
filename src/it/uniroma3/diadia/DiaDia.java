@@ -79,7 +79,7 @@ public class DiaDia {
 		Scanner scanner = new Scanner(System.in);
 		IO console = new IOConsole(scanner);
 		
-		Labirinto labirinto = Labirinto.newBuilder("labirinto.txt").getLabirinto();
+		Labirinto labirinto = Labirinto.newBuilder("labirinto2.txt").getLabirinto();
 
 		DiaDia gioco = new DiaDia(console, labirinto);
 		gioco.gioca();

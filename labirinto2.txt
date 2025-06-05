@@ -1,0 +1,11 @@
+Stanze:Atrio,Biblioteca,Bagno,Studio
+Magica:
+Buia:
+Bloccata:  
+Inizio:Atrio
+Vincente:Biblioteca
+Mago: Bagno Merlino Ciaoooo bacchetta
+Cane:
+Strega: Studio Varana AHIUUUU
+Attrezzi:seghetto 3 Atrio, martello 10 Studio
+Uscite:Atrio sud Biblioteca,Biblioteca nord Atrio,Bagno sud Atrio,Atrio nord Bagno,Studio est Atrio,Atrio ovest Studio
